@@ -6,44 +6,52 @@ namespace book
     {
         static void Main(string[] args)
         {
-			Book book = new Book("Robert C. Martin", "Clean Code", 2008, 8500);
-			//book.SetAuthor("Robert C. Martin");
-			//book.SetTitle("Clean Code: A Handbook of Agile Software Craftsmanship");
-			//book.SetYearOfPublication(2008);
-			//book.SetPrice(8500);
+            Book book = new Book("Robert C. Martin", "Clean Code", 2008, 8500);
 
-			//book.Author = "Robert C. Martin";
-			//book.Title = "Clean Code: A Handbook of Agile Software Craftsmanship";
-			//book.YearOfPublication = 2008;
-			//book.Price = 8500;
-
-			Console.WriteLine(book.DisplayInformation());
-			book.IncreasePrice(10);
-			Console.WriteLine(book.DisplayInformation());
+            Console.WriteLine(book.DisplayInformation());
+            book.IncreasePrice(10);
+            Console.WriteLine(book.DisplayInformation());
             Console.WriteLine(book);
             Console.WriteLine();
 
-			// Test 1: book2 is newer
-			Book book1 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
-			Book book2 = new Book("Bán Mór", "Hunyadi");
+            // Test 1: book2 is newer
+            Book book1 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
+            Book book2 = new Book("Bán Mór", "Hunyadi");
 
             Console.WriteLine("Feladat: osszehasonlitani book1-et es book2-t!!!");
-			//MEGOLDAS HELYE
+            int result1 = Book.ComparePublicationDate(book1, book2);
+            if (result1 == 1)
+                Console.WriteLine("book1 újabb");
+            else if (result1 == 2)
+                Console.WriteLine("book2 újabb");
+            else
+                Console.WriteLine("A két könyv ugyanabban az évben jelent meg.");
 
+            // Test 2: book1 is newer
+            book2 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
+            book1 = new Book("Bán Mór", "Hunyadi");
 
-			// Test 2: book1 is newer
-			book2 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
-			book1 = new Book("Bán Mór", "Hunyadi");
+            Console.WriteLine("Feladat: osszehasonlitani book1-et es book2-t!!!");
+            int result2 = Book.ComparePublicationDate(book1, book2);
+            if (result2 == 1)
+                Console.WriteLine("book1 újabb");
+            else if (result2 == 2)
+                Console.WriteLine("book2 újabb");
+            else
+                Console.WriteLine("A két könyv ugyanabban az évben jelent meg.");
 
-			Console.WriteLine("Feladat: osszehasonlitani book1-et es book2-t!!!");
-			//MEGOLDAS HELYE
+            // Test 3: book1 and book2 are published in the same year
+            book2 = new Book("J.K. Rowling", "Harry Potter");
+            book1 = new Book("Bán Mór", "Hunyadi");
 
-			// Test 3: book1 and book2 are published in the same year
-			book2 = new Book("J.K. Rowling", "Harry Potter");
-			book1 = new Book("Bán Mór", "Hunyadi");
-
-			Console.WriteLine("Feladat: osszehasonlitani book1-et es book2-t!!!");
-			//MEGOLDAS HELYE
-		}
-	}
+            Console.WriteLine("Feladat: osszehasonlitani book1-et es book2-t!!!");
+            int result3 = Book.ComparePublicationDate(book1, book2);
+            if (result3 == 1)
+                Console.WriteLine("book1 újabb");
+            else if (result3 == 2)
+                Console.WriteLine("book2 újabb");
+            else
+                Console.WriteLine("A két könyv ugyanabban az évben jelent meg.");
+        }
+    }
 }

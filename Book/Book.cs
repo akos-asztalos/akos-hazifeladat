@@ -1,26 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace book
 {
-    //Egészítse ki a definiált Könyv osztályt 2 konstruktorral.
-    //Az egyik konstruktornak a könyv minden adatát meg kell adni, 
-    //a másiknak csak a szerzőt és a címet, az ár 2500 Ft, a megjelenés éve pedig az aktuális év.
-    //Definiálja felül a ToString metódust a DisplayInformation metódus tartalmával.
-    //Írjon osztályszintű összehasonlító metódust(ComparePublicationDate), 
-    //amely 1-et ad vissza, ha az első paraméterként megadott könyv az újabb, 
-    //2-t ha a második, és 0-t, ha ugyanabban az évben jelentek meg.
-
-    //Értékadás előtti ellenőrzések:
-    //- a megjelenés éve, ha nem 1950 és 2021 között van, legyen 2021, egyébként a megadott érték
-    //- az ár legyen 1000 forint 1000-nél kisebb értékekre, egyébként a megadott érték
-
-    //Módosítsa a Könyv osztályt használó osztályt ennek megfelelően.
-    //A BookTest osztályban hozzon létre 2 könyvet (a 2 konstruktort felhasználva) és
-    //jelenítse meg az adataikat a ToString metódust használva.
-    //Hasonlítsa össze a két könyv megjelenési évét.
-
     public class Book
     {
         private string author;
@@ -28,32 +9,50 @@ namespace book
         private int yearOfPublication;
         private int price;
 
+        // Konstruktor, amely minden adatot megad
+        public Book(string author, string title, int yearOfPublication, int price)
+        {
+            this.author = author;
+            this.title = title;
+            this.yearOfPublication = (yearOfPublication < 1950 || yearOfPublication > 2021) ? 2021 : yearOfPublication;
+            this.price = (price < 1000) ? 1000 : price;
+        }
+
+        // Konstruktor, amely csak a szerzőt és a címet kéri, az ár alapértelmezett 2500, a megjelenés éve az aktuális év
+        public Book(string author, string title)
+        {
+            this.author = author;
+            this.title = title;
+            this.yearOfPublication = DateTime.Now.Year;
+            this.price = 2500;
+        }
+
         public int Price
         {
             get { return price; }
-            set 
+            set
             {
-                //Értékadás előtti ellenőrzés:
-                //- az ár legyen 1000 forint 1000-nél kisebb értékekre, egyébként a megadott érték
-                price = value; 
+                // Ellenőrzés, hogy az ár 1000 forintnál kisebb-e
+                price = (value < 1000) ? 1000 : value;
             }
         }
 
         public int YearOfPublication
         {
             get { return yearOfPublication; }
-            set 
+            set
             {
-                //Értékadás előtti ellenőrzés:
-                //- a megjelenés éve, ha nem 1950 és 2021 között van, legyen 2021, egyébként a megadott érték
-                yearOfPublication = value; 
+                // Ellenőrzés, hogy a megjelenési év 1950 és 2021 között van-e
+                yearOfPublication = (value < 1950 || value > 2021) ? 2021 : value;
             }
         }
+
         public string Title
         {
             get { return title; }
             set { title = value; }
         }
+
         public string Author
         {
             get { return author; }
@@ -87,14 +86,30 @@ namespace book
         public void IncreasePrice(int percentage)
         {
             if (percentage > 0)
-                price +=  (int)Math.Round(price * percentage / 100.0);
+                price += (int)Math.Round(price * percentage / 100.0);
         }
 
+        // DisplayInformation metódus, amely visszaadja a könyv adatait
         public string DisplayInformation()
         {
             return author + ": " + title + ", " + yearOfPublication + ". Price: " + price + " Ft";
         }
 
+        // ToString metódus felülírása
+        public override string ToString()
+        {
+            return DisplayInformation();
+        }
 
+        // ComparePublicationDate metódus, amely összehasonlítja a két könyv megjelenési évét
+        public static int ComparePublicationDate(Book book1, Book book2)
+        {
+            if (book1.yearOfPublication > book2.yearOfPublication)
+                return 1;
+            else if (book1.yearOfPublication < book2.yearOfPublication)
+                return 2;
+            else
+                return 0;
+        }
     }
 }
