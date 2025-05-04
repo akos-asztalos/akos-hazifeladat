@@ -89,19 +89,19 @@ namespace book
                 price += (int)Math.Round(price * percentage / 100.0);
         }
 
-        // DisplayInformation metódus, amely visszaadja a könyv adatait
+        
         public string DisplayInformation()
         {
             return author + ": " + title + ", " + yearOfPublication + ". Price: " + price + " Ft";
         }
 
-        // ToString metódus felülírása
+        
         public override string ToString()
         {
             return DisplayInformation();
         }
 
-        // ComparePublicationDate metódus, amely összehasonlítja a két könyv megjelenési évét
+        
         public static int ComparePublicationDate(Book book1, Book book2)
         {
             if (book1.yearOfPublication > book2.yearOfPublication)
