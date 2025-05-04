@@ -9,7 +9,7 @@ namespace book
         private int yearOfPublication;
         private int price;
 
-        // Konstruktor, amely minden adatot megad
+       
         public Book(string author, string title, int yearOfPublication, int price)
         {
             this.author = author;
@@ -18,7 +18,7 @@ namespace book
             this.price = (price < 1000) ? 1000 : price;
         }
 
-        // Konstruktor, amely csak a szerzőt és a címet kéri, az ár alapértelmezett 2500, a megjelenés éve az aktuális év
+        
         public Book(string author, string title)
         {
             this.author = author;
@@ -32,7 +32,7 @@ namespace book
             get { return price; }
             set
             {
-                // Ellenőrzés, hogy az ár 1000 forintnál kisebb-e
+                
                 price = (value < 1000) ? 1000 : value;
             }
         }
@@ -42,7 +42,7 @@ namespace book
             get { return yearOfPublication; }
             set
             {
-                // Ellenőrzés, hogy a megjelenési év 1950 és 2021 között van-e
+                
                 yearOfPublication = (value < 1950 || value > 2021) ? 2021 : value;
             }
         }

@@ -14,7 +14,7 @@ namespace book
             Console.WriteLine(book);
             Console.WriteLine();
 
-            // Test 1: book2 is newer
+           
             Book book1 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
             Book book2 = new Book("Bán Mór", "Hunyadi");
 
@@ -27,7 +27,7 @@ namespace book
             else
                 Console.WriteLine("A két könyv ugyanabban az évben jelent meg.");
 
-            // Test 2: book1 is newer
+            
             book2 = new Book("J.K. Rowling", "Harry Potter", 2008, 3500);
             book1 = new Book("Bán Mór", "Hunyadi");
 
@@ -40,7 +40,7 @@ namespace book
             else
                 Console.WriteLine("A két könyv ugyanabban az évben jelent meg.");
 
-            // Test 3: book1 and book2 are published in the same year
+           
             book2 = new Book("J.K. Rowling", "Harry Potter");
             book1 = new Book("Bán Mór", "Hunyadi");
 
